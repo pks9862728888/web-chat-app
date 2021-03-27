@@ -1,0 +1,24 @@
+.home-body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #a2c9f0;
+}
+
+.upload-container {
+    width: 500px;
+    height: 200px;
+    padding: 1rem;
+    border: 2px #12273d solid;
+    border-radius: 10px;
+    box-shadow: 2px 2px #6086ac;
+    background-color: #acd5ff;
+    top: 37%;
+    left: 32%;
+    position: absolute;
+}
+
+.background-light-blue {
+    background-color: #acd5ff;
+}
