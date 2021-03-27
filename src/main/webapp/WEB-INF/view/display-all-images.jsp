@@ -30,7 +30,7 @@
 
             <div class="container-fluid background-light-blue">
                 <c:forEach var="imageObj" items="${images}">
-                    <p>Id: ${imageObj.getId()} Name: ${imageObj.getName()}</p>
+                    <img src="${image_path_prefix}${imageObj.getFileName()}" />
                 </c:forEach>
             </div>
         </div>
