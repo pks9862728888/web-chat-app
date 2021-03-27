@@ -24,7 +24,7 @@ import java.util.List;
 public class UploadedImageController {
 
     @Value("${image.storage.location}")
-    private String storageFolder;
+    private String imageStorageFolder;
 
     @Autowired
     private UploadedImageRepository uploadedImageRepository;
@@ -56,8 +56,10 @@ public class UploadedImageController {
 
         // Trying to save file in disk and database and sending appropriate response
         try {
-            String savedFileName = saveFileService.saveFile(file,
-                    (new File(storageFolder)).getAbsolutePath());
+            String savedFileName = saveFileService.saveFile(
+                    file,
+                    (new File(imageStorageFolder)).getAbsolutePath()
+            );
 
             UploadedImage uploadedImage = new UploadedImage(savedFileName);
             uploadedImageRepository.saveAndFlush(uploadedImage);
@@ -82,7 +84,7 @@ public class UploadedImageController {
                     new UploadedImage(list.get(i).getId(),
                     ServletUriComponentsBuilder
                             .fromCurrentContextPath()
-                            .path(storageFolder)
+                            .path(imageStorageFolder)
                             .path("/" + list.get(i).getFileName())
                             .toUriString()
                     )

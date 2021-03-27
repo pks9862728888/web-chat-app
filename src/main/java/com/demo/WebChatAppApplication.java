@@ -12,7 +12,7 @@ import java.io.File;
 public class WebChatAppApplication implements WebMvcConfigurer {
 
 	@Value("${image.storage.location}")
-	private String storageFolder;
+	private String imageStorageFolder;
 
 	public static void main(String[] args) {
 		SpringApplication.run(WebChatAppApplication.class, args);
@@ -20,7 +20,7 @@ public class WebChatAppApplication implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		String filePath = (new File(storageFolder)).getAbsolutePath();
+		String filePath = (new File(imageStorageFolder)).getAbsolutePath();
 
 		// Finding the appender to use while creating fully qualified path
 		String appender;
@@ -34,7 +34,7 @@ public class WebChatAppApplication implements WebMvcConfigurer {
 		}
 
 		// Register resource handler for images
-		registry.addResourceHandler("/public/**")
+		registry.addResourceHandler(String.format("/%s/**", imageStorageFolder))
 				.addResourceLocations("file:///" + filePath + appender)
 				.setCachePeriod(0);
 	}
