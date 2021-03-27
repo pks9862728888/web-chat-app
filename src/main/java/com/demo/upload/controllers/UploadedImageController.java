@@ -8,7 +8,6 @@ import com.demo.services.FileValidatorService;
 import com.demo.services.SaveFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,17 +42,19 @@ public class UploadedImageController {
 
     @PostMapping("/process-uploaded-image")
     public String processUploadedImage(@RequestParam("file") MultipartFile file, Model model) {
+        model.addAttribute("STATUS_SUCCESS", StatusConstantsInterface.SUCCESS);
 
-        // Checking whether correct file is uploaded or not
+        // Checking whether file with correct format is uploaded or not
         try {
             fileValidatorService.validateImageFile(file.getOriginalFilename());
         } catch (InvalidFileFormatException e) {
             e.printStackTrace();
             model.addAttribute("message", e.getMessage());
-            return "status/error";
+            model.addAttribute("status", StatusConstantsInterface.FAILED);
+            return "display-upload-status";
         }
 
-        // Trying to save file
+        // Trying to save file in disk and database and sending appropriate response
         try {
             String savedFileName = saveFileService.saveFile(file,
                     (new File(storageFolder)).getAbsolutePath());
@@ -63,19 +64,19 @@ public class UploadedImageController {
 
             model.addAttribute("message", "File uploaded successfully.");
             model.addAttribute("status", StatusConstantsInterface.SUCCESS);
-            return "status/success";
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("message", e.getMessage());
             model.addAttribute("status", StatusConstantsInterface.FAILED);
-            return "status/error";
         }
+        return "display-upload-status";
     }
 
     @GetMapping("/view-all-images")
     public String viewAllImages(Model model) {
         List<UploadedImage> list = uploadedImageRepository.findAll();
 
+        // Creating absolute file path
         for (int i = 0; i < list.size(); i++) {
             list.set(i,
                     new UploadedImage(list.get(i).getId(),
