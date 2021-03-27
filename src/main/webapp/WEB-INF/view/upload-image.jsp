@@ -28,10 +28,10 @@
         </nav>
 
         <div class="upload-container">
-            <form action="/process-uploaded-image" method="POST">
+            <form action="/process-uploaded-image" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="name">Your name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                    <label for="file">Upload image file:</label>
+                    <input type="file" class="form-control" id="file" name="file" accept="image/png, image/jpeg">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

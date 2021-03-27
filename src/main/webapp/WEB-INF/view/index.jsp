@@ -26,7 +26,9 @@
                 </li>
             </ul>
         </nav>
-        <h1>Sample webapp</h1>
+        <div class="container-fluid background-light-blue">
+            <h4 class="p-1rem">Home page will be shown here</h4>
+        </div>
     </div>
 
 </body>

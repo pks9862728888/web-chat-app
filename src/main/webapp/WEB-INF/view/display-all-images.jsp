@@ -29,9 +29,20 @@
             </nav>
 
             <div class="container-fluid background-light-blue">
-                <c:forEach var="imageObj" items="${images}">
-                    <p>Id: ${imageObj.getId()} Name: ${imageObj.getName()}</p>
-                </c:forEach>
+                <c:choose>
+                    <c:when test="${images.size() == 0}">
+                        <h4 class="p-1rem">No images found.</h4>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="row p-tb-1rem">
+                            <c:forEach var="imageObj" items="${images}">
+                                <div class="col-4 p-1rem">
+                                    <img src="${imageObj.getFileName()}" class="rounded img-thumbnail" />
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
 

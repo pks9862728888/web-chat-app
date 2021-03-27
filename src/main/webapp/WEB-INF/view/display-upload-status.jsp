@@ -28,7 +28,7 @@
         </nav>
 
         <div class="upload-container">
-            <h2>${message}</h2>
+            <h2 class="text-center">${message}</h2>
         </div>
     </div>
 

@@ -22,3 +22,12 @@
 .background-light-blue {
     background-color: #acd5ff;
 }
+
+.p-tb-1rem {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.p-1rem {
+    padding: 1rem;
+}
