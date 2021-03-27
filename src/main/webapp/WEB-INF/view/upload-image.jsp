@@ -31,7 +31,7 @@
             <form action="/process-uploaded-image" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="file">Upload image file:</label>
-                    <input type="file" class="form-control" id="file" name="file">
+                    <input type="file" class="form-control" id="file" name="file" accept="image/png, image/jpeg">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

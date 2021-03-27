@@ -31,8 +31,8 @@
             <div class="container-fluid background-light-blue">
                 <div class="row">
                     <c:forEach var="imageObj" items="${images}">
-                        <div class="col-4 p-1rem">
-                            <img src="${image_path_prefix}${imageObj.getFileName()}" class="rounded img-thumbnail" />
+                        <div class="col-4">
+                            <img src="${imageObj.getFileName()}" class="rounded img-thumbnail p-1rem" />
                         </div>
                     </c:forEach>
                 </div>

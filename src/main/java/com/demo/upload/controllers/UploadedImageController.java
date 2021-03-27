@@ -8,13 +8,16 @@ import com.demo.services.FileValidatorService;
 import com.demo.services.SaveFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,9 +26,6 @@ public class UploadedImageController {
 
     @Value("${image.storage.location}")
     private String storageFolder;
-
-    @Value("${image.storage.location.url}")
-    private String storageFolderUrl;
 
     @Autowired
     private UploadedImageRepository uploadedImageRepository;
@@ -55,7 +55,8 @@ public class UploadedImageController {
 
         // Trying to save file
         try {
-            String savedFileName = saveFileService.saveFile(file, storageFolder);
+            String savedFileName = saveFileService.saveFile(file,
+                    (new File(storageFolder)).getAbsolutePath());
 
             UploadedImage uploadedImage = new UploadedImage(savedFileName);
             uploadedImageRepository.saveAndFlush(uploadedImage);
@@ -74,8 +75,19 @@ public class UploadedImageController {
     @GetMapping("/view-all-images")
     public String viewAllImages(Model model) {
         List<UploadedImage> list = uploadedImageRepository.findAll();
+
+        for (int i = 0; i < list.size(); i++) {
+            list.set(i,
+                    new UploadedImage(list.get(i).getId(),
+                    ServletUriComponentsBuilder
+                            .fromCurrentContextPath()
+                            .path(storageFolder)
+                            .path("/" + list.get(i).getFileName())
+                            .toUriString()
+                    )
+            );
+        }
         model.addAttribute("images", list);
-        model.addAttribute("image_path_prefix", storageFolderUrl);
         return "display-all-images";
     }
 }

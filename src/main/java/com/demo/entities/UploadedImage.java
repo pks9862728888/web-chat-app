@@ -18,6 +18,11 @@ public class UploadedImage {
     public UploadedImage() {
     }
 
+    public UploadedImage(int id, String fileName) {
+        this.id = id;
+        this.fileName = fileName;
+    }
+
     public UploadedImage(String fileName) {
         this.fileName = fileName;
     }

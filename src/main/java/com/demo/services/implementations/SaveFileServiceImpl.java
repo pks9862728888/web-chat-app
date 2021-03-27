@@ -15,8 +15,19 @@ public class SaveFileServiceImpl implements SaveFileService {
 
     public String saveFile(MultipartFile file, String storageFolderLocation) throws IOException {
         String filename = file.getOriginalFilename();
+        String appender;
 
-        String savingFilePath = storageFolderLocation + filename;
+        if (storageFolderLocation.endsWith("/") || storageFolderLocation.endsWith("\\")) {
+            appender = "";
+        } else {
+            if (storageFolderLocation.contains("/")) {
+                appender = "/";
+            } else {
+                appender = "\\";
+            }
+        }
+
+        String savingFilePath = storageFolderLocation + appender + filename;
         System.out.println("Saving file in: " + savingFilePath);
 
         File imageFile = new File(savingFilePath);
