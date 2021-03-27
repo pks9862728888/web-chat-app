@@ -29,9 +29,13 @@
             </nav>
 
             <div class="container-fluid background-light-blue">
-                <c:forEach var="imageObj" items="${images}">
-                    <img src="${image_path_prefix}${imageObj.getFileName()}" />
-                </c:forEach>
+                <div class="row">
+                    <c:forEach var="imageObj" items="${images}">
+                        <div class="col-4 p-1rem">
+                            <img src="${image_path_prefix}${imageObj.getFileName()}" class="rounded img-thumbnail" />
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
         </div>
 
