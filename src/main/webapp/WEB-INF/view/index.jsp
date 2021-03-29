@@ -19,10 +19,16 @@
             <a class="navbar-brand" href="/">Webchat</a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/upload-image">Upload Image</a>
+                    <a class="nav-link" href="/upload-image-to-shared-location">Upload Image to Shared Location</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/view-all-images">View Images</a>
+                    <a class="nav-link" href="/view-all-images-from-shared-location">View Images from Shared Location</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/upload-image-to-database">Upload Image to Database</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/view-all-images-from-database">View Images from Database</a>
                 </li>
             </ul>
         </nav>

@@ -19,16 +19,22 @@
             <a class="navbar-brand" href="/">Webchat</a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/upload-image">Upload Image</a>
+                    <a class="nav-link" href="/upload-image-to-shared-location">Upload Image to Shared Location</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/view-all-images">View Images</a>
+                    <a class="nav-link" href="/view-all-images-from-shared-location">View Images from Shared Location</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/upload-image-to-database">Upload Image to Database</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/view-all-images-from-database">View Images from Database</a>
                 </li>
             </ul>
         </nav>
 
         <div class="upload-container">
-            <form action="/process-uploaded-image" method="POST" enctype="multipart/form-data">
+            <form action="/save-uploaded-image-in-shared-location" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="file">Upload image file:</label>
                     <input type="file" class="form-control" id="file" name="file" accept="image/png, image/jpeg">

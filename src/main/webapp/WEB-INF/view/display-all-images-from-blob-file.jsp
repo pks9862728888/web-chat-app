@@ -43,7 +43,7 @@
                         <div class="row p-tb-1rem">
                             <c:forEach var="imageObj" items="${images}">
                                 <div class="col-4 p-1rem">
-                                    <img src="${imageObj.getFileName()}" class="rounded img-thumbnail" />
+                                    <img src="data:image/jpeg;base64,${imageObj.getBase64EncodedFile()}" class="rounded img-thumbnail" />
                                 </div>
                             </c:forEach>
                         </div>
@@ -51,7 +51,5 @@
                 </c:choose>
             </div>
         </div>
-
     </body>
-
-    </html>
+</html>
