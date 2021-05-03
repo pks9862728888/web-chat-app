@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "web-chat-app-ui"
+    }
+  },
+  "defaultProject": "web-chat-app-ui",
+  "cli": {
+    "analytics": false
+  }
 }
